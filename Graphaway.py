@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+choice=st.selectbox("choose an option", ["line graph","pie chart"])
+if choice=="line graph":
+    linegraph()
+    
+
 def read_file(uploaded_file):
     try:
         if st.checkbox("small space is seperating criteria"):
@@ -36,7 +41,7 @@ def plot_graph(data, x_column, y_column, x_log_scale, y_log_scale, x_range, y_ra
     plt.tight_layout()
     st.pyplot(plt)
 
-def main():
+def linegraph():
     st.title("Interactive Data Plotting with Streamlit")
     uploaded_file = st.file_uploader("Upload your data file")
 
@@ -70,5 +75,3 @@ def main():
                 y_range = (y_range_min, y_range_max)
                 plot_graph(data, x_column, y_column, x_log_scale, y_log_scale, x_range, y_range)
 
-if __name__ == "__main__":
-    main()
